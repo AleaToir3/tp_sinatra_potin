@@ -28,6 +28,14 @@ class Gossip
     end
     return all_gossips
   end
+
+  def self.find(id)
+    this_gossip =[]
+    CSV.read("./db/gossip.csv").select.with_index do |csv_line, csv_index|
+     this_gossip << Gossip.new(csv_line[0], csv_index[1]) if id.to_i == csv_index
+  end
+  return this_gossip
+  end
   
   
 end
